@@ -1,46 +1,29 @@
-package com.projetomanytomany.usersEmail.models;
-
-import jakarta.persistence.*;
+package com.projetomanytomany.usersEmail.data.vo;
 
 import java.io.Serializable;
+import com.projetomanytomany.usersEmail.models.Email;
+import com.projetomanytomany.usersEmail.models.Group;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-@Entity
-@Table(name = "user_table")
-public class User implements Serializable {
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+public class UserVO implements Serializable {
+
     private Long id;
-    @Column(name = "first_name", nullable = false, length = 120)
     private String firstName;
-    @Column(name = "last_name", nullable = false, length = 120)
     private String lastName;
-    @Column(name = "user_name", nullable = false, length = 120)
     private String userName;
-    @Column(name = "pwd", nullable = false)
     private String password;
-    @Column(nullable = false, length = 15)
     private String phone;
-    @Column(name = "social_network", nullable = true)
     private String socialNetwork;
-
-    // um USER para muitos EMAILS
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Email> emails = new ArrayList<>();
-
-    // muitos USERS para muitos GRUPOS
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinTable(name = "user_groups",
-            joinColumns = {@JoinColumn(name = "user_id")},
-            inverseJoinColumns = {@JoinColumn(name = "group_id")})
     private List<Group> groups = new ArrayList<>();
 
-    public User() {
+    public UserVO() {
     }
 
-    public User(String firstName, String lastName, String userName, String password, String phone, String socialNetwork, List<Email> emails, List<Group> groups) {
+    public UserVO(String firstName, String lastName, String userName, String password, String phone, String socialNetwork, List<Email> emails, List<Group> groups) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.userName = userName;
@@ -49,14 +32,6 @@ public class User implements Serializable {
         this.socialNetwork = socialNetwork;
         this.emails = emails;
         this.groups = groups;
-    }
-
-    // Metodo helper
-    // INCLUIR ESSE METODO PARA INSERIR NOVOS GRUPOS
-
-    public void addGroup(Group group) {
-        this.groups.add(group);
-        group.getUsers().add(this);
     }
 
     public Long getId() {
@@ -118,6 +93,7 @@ public class User implements Serializable {
     public List<Email> getEmails() {
         return emails;
     }
+
     public void setEmails(List<Email> emails) {
         this.emails = emails;
     }
@@ -134,18 +110,18 @@ public class User implements Serializable {
     public boolean equals(Object o) {
         if(this == o) return true;
         if(o == null || getClass() != o.getClass()) return false;
-        User user = (User) o;
-        return Objects.equals(id, user.id) && Objects.equals(firstName, user.firstName) && Objects.equals(lastName, user.lastName) && Objects.equals(userName, user.userName) && Objects.equals(password, user.password) && Objects.equals(phone, user.phone) && Objects.equals(socialNetwork, user.socialNetwork);
+        UserVO userVO = (UserVO) o;
+        return Objects.equals(id, userVO.id) && Objects.equals(firstName, userVO.firstName) && Objects.equals(lastName, userVO.lastName) && Objects.equals(userName, userVO.userName) && Objects.equals(password, userVO.password) && Objects.equals(phone, userVO.phone) && Objects.equals(socialNetwork, userVO.socialNetwork) && Objects.equals(emails, userVO.emails);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, firstName, lastName, userName, password, phone, socialNetwork);
+        return Objects.hash(id, firstName, lastName, userName, password, phone, socialNetwork, emails);
     }
 
     @Override
     public String toString() {
-        return "User{" +
+        return "UserVO{" +
                 "id=" + id +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
@@ -153,6 +129,7 @@ public class User implements Serializable {
                 ", password='" + password + '\'' +
                 ", phone='" + phone + '\'' +
                 ", socialNetwork='" + socialNetwork + '\'' +
+                ", emails=" + emails +
                 '}';
     }
 }
