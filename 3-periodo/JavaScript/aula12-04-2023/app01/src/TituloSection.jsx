@@ -1,9 +1,9 @@
-export default function TituloSection(){
+export default function TituloSection(props){
     
     return (
         <div className="centralizar">
-            <h1 style={{color:"darkorchid"}}>Clientes Felizes. Novos Amigos :)</h1>
-            <p>DEPOIMENTO DE ALGUNS CLIENTES REAIS</p>
+            <h2 style={{color:"darkorchid"}}>{props.titulo}</h2>
+            <p>{props.subtitulo}</p>
         </div>
     )
 
