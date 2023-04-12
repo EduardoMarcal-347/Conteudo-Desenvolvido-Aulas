@@ -1,8 +1,8 @@
-import TituloDepoimentos from "./TituloDepoimentos";
+import TituloSection from "./TituloSection";
 
 function App() {
   return (
-    <TituloDepoimentos/>
+    <TituloSection/>
   )
 }
 

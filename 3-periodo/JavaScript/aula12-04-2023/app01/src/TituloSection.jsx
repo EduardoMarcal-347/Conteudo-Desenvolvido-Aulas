@@ -1,8 +1,8 @@
-export default function TituloDepoimentos(){
+export default function TituloSection(){
     
     return (
         <div className="centralizar">
-            <h1 style={{color:"red"}}>Clientes Felizes. Novos Amigos :)</h1>
+            <h1 style={{color:"darkorchid"}}>Clientes Felizes. Novos Amigos :)</h1>
             <p>DEPOIMENTO DE ALGUNS CLIENTES REAIS</p>
         </div>
     )
