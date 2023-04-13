@@ -8,13 +8,19 @@ export default function Depoimentos(){
             titulo = "Cliente Felizes. Novos Amigos :)"
             subtitulo = "DEPOIMENTOS DE ALGUNS CLIENTES REAIS"/>
             <div className="depoimentosCliente">
-                <AvaliacaoCliente nome = "Ana Brook"
+                <AvaliacaoCliente 
+                foto = "foto01.jpg"
+                nome = "Ana Brook"
                 avaliacao01 = "Estou muito feliz..."
                 avaliacao02 = "Me surpreendeu muito e recomendo a todos"/>
-                <AvaliacaoCliente nome = "Dani Shutz"
+                <AvaliacaoCliente 
+                foto = "foto03.jpg"
+                nome = "Dani Shutz"
                 avaliacao01 = "Foi uma satisfação tão grande..."
                 avaliacao02 = "Adorei minha aquisição"/>
-                <AvaliacaoCliente nome = "Bia Wolf"
+                <AvaliacaoCliente 
+                foto = "foto05.jpg"
+                nome = "Bia Wolf"
                 avaliacao01 = "Não poderia ter uma compra tão incrivel..."
                 avaliacao02 = "Amei!!!"/>
             </div>
