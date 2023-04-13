@@ -3,7 +3,7 @@ import AvaliacaoCliente from "./AvaliacaoCliente"
 
 export default function Depoimentos(){
 
-    const avaliacoes = [
+    let avaliacoes = [
         {
             foto:"foto01.jpg",
             nome :"Ana Brook",
@@ -23,6 +23,15 @@ export default function Depoimentos(){
             avaliacao02:"Amei!!!"
         }
     ]
+    
+    function showAvaliacoes(){
+        return avaliacoes.map(e => 
+            <AvaliacaoCliente 
+                    foto = {avaliacoes[e].foto}
+                    nome = {avaliacoes[e].nome}
+                    avaliacao01 = {avaliacoes[e].avaliacao01}
+                    avaliacao02 = {avaliacoes[e].avaliacao02}/>)
+    }
 
     return(
         <section>
@@ -30,23 +39,7 @@ export default function Depoimentos(){
             titulo = "Cliente Felizes. Novos Amigos :)"
             subtitulo = "DEPOIMENTOS DE ALGUNS CLIENTES REAIS"/>
             <div className="depoimentosCliente">
-                <AvaliacaoCliente 
-                foto = {avaliacoes[0].foto}
-                nome = {avaliacoes[0].nome}
-                avaliacao01 = {avaliacoes[0].avaliacao01}
-                avaliacao02 = {avaliacoes[0].avaliacao02}/>
-
-                <AvaliacaoCliente 
-                foto = "foto03.jpg"
-                nome = "Dani Shutz"
-                avaliacao01 = "Foi uma satisfação tão grande..."
-                avaliacao02 = "Adorei minha aquisição"/>
-
-                <AvaliacaoCliente 
-                foto = "foto05.jpg"
-                nome = "Bia Wolf"
-                avaliacao01 = "Não poderia ter uma compra tão incrivel..."
-                avaliacao02 = "Amei!!!"/>
+                {showAvaliacoes()}
             </div>
         </section>
     )
