@@ -31,10 +31,10 @@ export default function Depoimentos(){
             subtitulo = "DEPOIMENTOS DE ALGUNS CLIENTES REAIS"/>
             <div className="depoimentosCliente">
                 <AvaliacaoCliente 
-                foto = "foto01.jpg"
-                nome = "Ana Brook"
-                avaliacao01 = "Estou muito feliz..."
-                avaliacao02 = "Me surpreendeu muito e recomendo a todos"/>
+                foto = {avaliacoes[0].foto}
+                nome = {avaliacoes[0].nome}
+                avaliacao01 = {avaliacoes[0].avaliacao01}
+                avaliacao02 = {avaliacoes[0].avaliacao02}/>
 
                 <AvaliacaoCliente 
                 foto = "foto03.jpg"
