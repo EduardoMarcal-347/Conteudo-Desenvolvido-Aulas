@@ -24,5 +24,5 @@ public class Vendedor extends Funcionario{
     public Double calculaSalario() {
         return getSalarioBase()+this.comissao;
     }
-    
+
 }
