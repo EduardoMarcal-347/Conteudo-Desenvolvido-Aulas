@@ -23,4 +23,7 @@ public class Main {
         return valorFolha;
     }
 
+    //Foi Usado Encapsulamento, Herança ,Polimorfismo, Classe Abstrata e Sobreescrita de metodos
+
+
 }

@@ -18,6 +18,7 @@ public class Main {
     }
 
     public static void showCartoes(Iterator<CartaoWeb> iterator){
+        //polimorfismo acontece na linha 22, onde cada Classe implementa o metodo showMessage() de uma forma diferente
         iterator.next().showMessage();
         if (iterator.hasNext()){
             showCartoes(iterator);
