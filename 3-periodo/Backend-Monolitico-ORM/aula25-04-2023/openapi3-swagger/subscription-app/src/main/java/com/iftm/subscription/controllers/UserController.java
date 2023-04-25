@@ -2,6 +2,12 @@ package com.iftm.subscription.controllers;
 
 import com.iftm.subscription.data.vo.UserVO;
 import com.iftm.subscription.services.UserService;
+import com.iftm.subscription.utils.MediaTypes;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.ArraySchema;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -19,6 +25,23 @@ public class UserController {
     // READ - HTTP GET
     // Endpoint: http://localhost:8080/api/v1/user
     @GetMapping
+    @Operation(
+            summary = "Find All Users", description = "Find All Users", tags = {"user"},
+            responses = {
+                @ApiResponse(description = "Success.", responseCode = "200",
+                    content = {
+                        @Content(mediaType = MediaTypes.APPLICATION_JSON,
+                            array = @ArraySchema(schema = @Schema(implementation = UserVO.class))
+                        )
+                    }
+                ),
+                @ApiResponse(description = "Not Found.", responseCode = "404", content = @Content),
+                @ApiResponse(description = "Bad Request.", responseCode = "400", content = @Content),
+                @ApiResponse(description = "Unauthorized.", responseCode = "401", content = @Content),
+                @ApiResponse(description = "Internal Server Error.", responseCode = "500", content = @Content)
+            }
+
+    )
     public List<UserVO> findAll() {
         return service.findAll();
     }
