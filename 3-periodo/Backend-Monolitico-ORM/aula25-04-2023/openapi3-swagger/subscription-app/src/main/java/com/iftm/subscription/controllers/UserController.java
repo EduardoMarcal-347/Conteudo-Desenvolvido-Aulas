@@ -138,7 +138,7 @@ public class UserController {
     // DELETE - HTTP DELETE
     // Endpoint: http://localhost:8080/api/v1/user/ID
     @DeleteMapping("/{id}")
-    @Operation(summary = "Create user", description = "Create user.", tags = {"user"},
+    @Operation(summary = "Delete a user", description = "Delete a user.", tags = {"user"},
             responses = {
                     @ApiResponse(description = "Success.", responseCode = "200"),
                     @ApiResponse(description = "Not Found.", responseCode = "404", content = @Content),
