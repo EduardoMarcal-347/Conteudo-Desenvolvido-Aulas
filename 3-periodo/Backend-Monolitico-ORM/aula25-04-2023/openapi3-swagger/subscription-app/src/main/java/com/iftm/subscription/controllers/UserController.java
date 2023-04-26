@@ -40,7 +40,6 @@ public class UserController {
                 @ApiResponse(description = "Unauthorized.", responseCode = "401", content = @Content),
                 @ApiResponse(description = "Internal Server Error.", responseCode = "500", content = @Content)
             }
-
     )
     public List<UserVO> findAll() {
         return service.findAll();
@@ -49,12 +48,44 @@ public class UserController {
     // READ - HTTP GET
     // Endpoint: http://localhost:8080/api/v1/user/ID
     @GetMapping("/{id}")
+    @Operation(summary = "Find a user by ID.", description = "Find a user by ID.", tags = {"user"},
+        responses = {
+                @ApiResponse(description = "Success.", responseCode = "200",
+                    content = {
+                        @Content(mediaType = MediaTypes.APPLICATION_JSON,
+                                schema = @Schema(implementation = UserVO.class)
+                        )
+                    }
+                ),
+                @ApiResponse(description = "Not Found.", responseCode = "404", content = @Content),
+                @ApiResponse(description = "Bad Request.", responseCode = "400", content = @Content),
+                @ApiResponse(description = "Unauthorized.", responseCode = "401", content = @Content),
+                @ApiResponse(description = "Internal Server Error.", responseCode = "500", content = @Content)
+        }
+    )
     public UserVO findById(@PathVariable("id") Long id) {
         return service.findById(id);
     }
 
     // USERS BY GROUP NAME - HTTP GET
     // Endpoint: http://localhost:8080/api/v1/user/group/NOME_DO_GRUPO
+
+    @Operation(
+            summary = "Find Users by Group name", description = "Find Users by Group name", tags = {"user"},
+            responses = {
+                    @ApiResponse(description = "Success.", responseCode = "200",
+                            content = {
+                                    @Content(mediaType = MediaTypes.APPLICATION_JSON,
+                                            array = @ArraySchema(schema = @Schema(implementation = UserVO.class))
+                                    )
+                            }
+                    ),
+                    @ApiResponse(description = "Not Found.", responseCode = "404", content = @Content),
+                    @ApiResponse(description = "Bad Request.", responseCode = "400", content = @Content),
+                    @ApiResponse(description = "Unauthorized.", responseCode = "401", content = @Content),
+                    @ApiResponse(description = "Internal Server Error.", responseCode = "500", content = @Content)
+            }
+    )
     @GetMapping("group/{name}")
     public List<UserVO> findUsersByGroupName(@PathVariable("name") String groupName) {
         return service.findByGroupName(groupName);
@@ -63,6 +94,21 @@ public class UserController {
     // CREATE - HTTP POST
     // Endpoint: http://localhost:8080/api/v1/user
     @PostMapping
+    @Operation(summary = "Create user", description = "Create user.", tags = {"user"},
+            responses = {
+                    @ApiResponse(description = "Success.", responseCode = "200",
+                            content = {
+                                    @Content(mediaType = MediaTypes.APPLICATION_JSON,
+                                            schema = @Schema(implementation = UserVO.class)
+                                    )
+                            }
+                    ),
+                    @ApiResponse(description = "Not Found.", responseCode = "404", content = @Content),
+                    @ApiResponse(description = "Bad Request.", responseCode = "400", content = @Content),
+                    @ApiResponse(description = "Unauthorized.", responseCode = "401", content = @Content),
+                    @ApiResponse(description = "Internal Server Error.", responseCode = "500", content = @Content)
+            }
+    )
     public UserVO save(@RequestBody UserVO userVO) {
         return service.save(userVO);
     }
@@ -70,6 +116,21 @@ public class UserController {
     // UPDATE - HTTP PUT
     // Endpoint: http://localhost:8080/api/v1/user
     @PutMapping
+    @Operation(summary = "Update user", description = "Update user.", tags = {"user"},
+            responses = {
+                    @ApiResponse(description = "Success.", responseCode = "200",
+                            content = {
+                                    @Content(mediaType = MediaTypes.APPLICATION_JSON,
+                                            schema = @Schema(implementation = UserVO.class)
+                                    )
+                            }
+                    ),
+                    @ApiResponse(description = "Not Found.", responseCode = "404", content = @Content),
+                    @ApiResponse(description = "Bad Request.", responseCode = "400", content = @Content),
+                    @ApiResponse(description = "Unauthorized.", responseCode = "401", content = @Content),
+                    @ApiResponse(description = "Internal Server Error.", responseCode = "500", content = @Content)
+            }
+    )
     public UserVO update(@RequestBody UserVO userVO) {
         return service.update(userVO);
     }
@@ -77,6 +138,15 @@ public class UserController {
     // DELETE - HTTP DELETE
     // Endpoint: http://localhost:8080/api/v1/user/ID
     @DeleteMapping("/{id}")
+    @Operation(summary = "Create user", description = "Create user.", tags = {"user"},
+            responses = {
+                    @ApiResponse(description = "Success.", responseCode = "200"),
+                    @ApiResponse(description = "Not Found.", responseCode = "404", content = @Content),
+                    @ApiResponse(description = "Bad Request.", responseCode = "400", content = @Content),
+                    @ApiResponse(description = "Unauthorized.", responseCode = "401", content = @Content),
+                    @ApiResponse(description = "Internal Server Error.", responseCode = "500", content = @Content)
+            }
+    )
     public String delete(@PathVariable("id") Long id) {
         return service.delete(id);
     }
