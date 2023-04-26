@@ -1,6 +1,7 @@
 package com.iftm.subscription.controllers;
 
 import com.iftm.subscription.data.vo.EmailVO;
+import com.iftm.subscription.data.vo.UserVO;
 import com.iftm.subscription.services.EmailService;
 import com.iftm.subscription.utils.MediaTypes;
 import io.swagger.v3.oas.annotations.Operation;
@@ -47,7 +48,11 @@ public class EmailController {
     @Operation(summary = "Find Emails by ID", description = "Find Emails by ID",
             responses = {
                     @ApiResponse(description = "Success", responseCode = "200",
-                            content = @Content(schema = @Schema(implementation = EmailVO.class))
+                            content = {
+                                    @Content(mediaType = MediaTypes.APPLICATION_JSON,
+                                            schema = @Schema(implementation = EmailVO.class)
+                                    )
+                            }
                     ),
                     @ApiResponse(description = "Not Found.", responseCode = "404", content = @Content),
                     @ApiResponse(description = "Bad Request.", responseCode = "400", content = @Content),
@@ -65,7 +70,11 @@ public class EmailController {
     @Operation(summary = "Create Emails", description = "Create Emails",
             responses = {
                     @ApiResponse(description = "Success", responseCode = "200",
-                            content = @Content(schema = @Schema(implementation = EmailVO.class))
+                            content = {
+                                    @Content(mediaType = MediaTypes.APPLICATION_JSON,
+                                            schema = @Schema(implementation = EmailVO.class)
+                                    )
+                            }
                     ),
                     @ApiResponse(description = "Not Found.", responseCode = "404", content = @Content),
                     @ApiResponse(description = "Bad Request.", responseCode = "400", content = @Content),

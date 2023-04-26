@@ -3,6 +3,10 @@ package com.iftm.subscription.controllers;
 import com.iftm.subscription.data.vo.GroupVO;
 import com.iftm.subscription.data.vo.UserVO;
 import com.iftm.subscription.services.GroupService;
+import com.iftm.subscription.utils.MediaTypes;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,6 +22,14 @@ public class GroupController {
     // READ - HTTP GET
     // Endpoint: http://localhost:8080/api/v1/group
     @GetMapping
+    @Operation(summary = "Find All Groups", description = "Find All Groups",
+        responses = {
+                @ApiResponse(description = "Not Found.", responseCode = "404", content = @Content),
+                @ApiResponse(description = "Bad Request.", responseCode = "400", content = @Content),
+                @ApiResponse(description = "Unauthorized.", responseCode = "401", content = @Content),
+                @ApiResponse(description = "Internal Server Error.", responseCode = "500", content = @Content)
+        }
+    )
     public List<GroupVO> findAll() {
         return service.findAll();
     }
