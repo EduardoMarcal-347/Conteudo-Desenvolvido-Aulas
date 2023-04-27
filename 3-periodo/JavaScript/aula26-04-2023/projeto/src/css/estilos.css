@@ -1,0 +1,7 @@
+.pannel {
+    display: block;
+    width: 500px;
+    height: 200px;
+    border: 2px solid black;
+    text-align: start;
+}
