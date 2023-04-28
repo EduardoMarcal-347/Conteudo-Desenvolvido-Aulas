@@ -11,4 +11,10 @@ import java.util.Optional;
 public interface ClientRepository extends JpaRepository<Client, Long> {
     @Query(value = "SELECT c FROM Client c WHERE c.id = :id")
     public Optional<Client> findById(Long id);
+
+    @Query(value = "SELECT c FROM Client c WHERE c.name = :name")
+    public Optional<Client> findByName(Long name);
+
+
+
 }
