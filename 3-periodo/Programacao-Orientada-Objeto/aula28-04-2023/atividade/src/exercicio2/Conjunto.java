@@ -5,7 +5,18 @@ import java.util.List;
 
 public class Conjunto <T> {
 
-    List<T> list = new ArrayList<T>();
+    private List<T> list = new ArrayList<T>();
+
+    public Conjunto() {
+    }
+
+    public List<T> getList() {
+        return list;
+    }
+
+    public void setList(List<T> list) {
+        this.list = list;
+    }
 
     public void adicionarT (T element) {
         list.add(element);

@@ -5,7 +5,18 @@ import java.util.List;
 
 public class PilhaLimitada<T> {
 
-    List<T> list = new ArrayList<T>();
+    private List<T> list = new ArrayList<T>();
+
+    public PilhaLimitada() {
+    }
+
+    public List<T> getList() {
+        return list;
+    }
+
+    public void setList(List<T> list) {
+        this.list = list;
+    }
 
     public void empilhar(T element) {
         list.add(element);
